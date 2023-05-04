@@ -1,0 +1,225 @@
+:root{
+    --primary-color: #EE4D2D;
+    --while-color: #fff;
+    --black-color: #000;
+    --text-color: #333;
+    --border-color: #dbdbdb;
+    --start-gold-color: #FFCE3E;
+    --header-height: 120px;/*Sau khi viết bài toán Calc() thì khi tăng "--header-height" thì "header-with-search" sẽ tăng theo*/
+    --navbar-height: 34px;
+    --header-with-search-height: calc(var(--header-height) - var(--navbar-height));/*Tính toán khi tăng kích thước header thì không lm ảnh thưởng thông số khung và ảnh Search*/
+    /*Calc() Là một funcrion đơn giản trong CSS cho phép Developer thực hiện các phép tính đơn giản như "+, -, *, /"(Một điều rất hay ở Function Calc() là nó cho phép thực hiện các phép tính vs các đơn vị khác nhau "width, height, magrin, padding, top, left, background-position,...")*/
+}
+*{
+    box-sizing: inherit;/*Inherit from the tag containing it*/
+}
+html{
+    font-size: 62.5%;/*Đa phần các trình duyện điều hiểu font-size = 100% là = 16px Tương đương 1rem = 16px*/
+    /*Cho = 62.5% thì 1rem = 10px*/
+    line-height: 1.6rem;/*16px (Chiều cao dòng)*/
+    font-family: 'Roboto', sans-serif;/*Copy từ Google Roboto Font*/
+    box-sizing: border-box;
+}
+/*Responsive*/
+.grid{
+    width: 1200px;
+    max-width: 100%;/*Max width is 100%*/
+    /*VS các màn hình có kích thước lớn hơn 1200px thì vs các class là grid này chỉ là 1200px | Vs nhừng màn hình có kích thước nhỏ hơn 1200px thì khi đó max-width sẽ tác dụng làm giảm kích thước của grid bằng vs kích thước của màn hình nhỏ hơn 1200px*/
+    margin: 0 auto;/*Tự động căn giữa khối này khi nằm trong một khối khác*/
+}
+.grid__full-width{
+    width: 100%;
+}
+.grid__row{/*Những thẻ nằm trong class này ó sẽ cùng nằm trên cùng 1 hàng ngang*/
+    display: flex;/*Những thẻ nào nằm trong class này sẽ nằm cùng trên 1 hàng ngang*/
+    flex-wrap: wrap;/*Những thg con có độ dài vượt quá "grid__row" sẽ nhảy xuống hàng*/
+    margin-left: -5px;
+    margin-right: -5px;
+}
+.grid__column-2{/*Không còn sử dụng nữa vì chia tới 6 khung sản phẩm*/
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 16.6667%;
+}
+.grid__column-2-4{
+    padding-left: 5px;
+    
+    padding-right: 5px;
+    width: 20%;
+}
+.grid__column-10{
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 83.3334%;
+    
+}
+
+
+
+/*Animation cho QR*/
+@keyframes fadeIn{/*Thg nào sử dụng cái "Keyframes" này thì từ khi nó xuất hiện sẽ có Opacity = 0 đến khi kết khúc quá trình thì có Opacity = 1*/
+    from{
+        opacity: 0;
+    } to{
+        opacity: 1;
+    }
+}
+@keyframes growth{
+    from{
+        transform: scale(var(--growth-from));
+    } to{
+        transform: scale(var(--growth-to));
+    }
+}
+/*Modal*/
+.modal{/*Kích thước chiếm hết màn hình*/
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;/*Cho display: flex* và "modal__body" magrin: auto; để canh giữa*/
+    animation: fadeIn linear 0.1s;/*Animation cho Form Đk vs ĐN và modal*/
+}
+.modal__overlay{
+    position: absolute;/*Con của modal*/
+    width: 100%;/*100% của hằng chứa nó (modal)*/
+    height: 100%;/*100% của hằng chứa nó (modal)*/
+    background-color: rgba(0, 0, 0, 0.4);/*Modal mờ phủ lên*/
+}
+.modal__body{
+    /* width: 500px; */
+    /*height: 300px;*/
+    /* background-color: var(--while-color); */
+    --growth-from: 0.7;/*70%*/
+    --growth-to: 1;/*= 1 là kích thước nguyên vẹn của chính nó*/  
+    margin: auto;
+    position: relative;
+    z-index: 1;/*Attribute của Class nào có chỉ số cao hơn thì class đó ưu tiên nổi lên hơn*/
+    animation: growth linear 0.1s;
+}
+/*Button Style*/
+.btn{
+    min-width: 124px;/*Chiều dài tối thiểu của Button*/
+    height: 34px;/*Chiều cao của Button*/
+    text-decoration: none;/*Bỏ thuộc tính rạch chân của thẻ <a>*/
+    border: none;/*Có border màu đen bao quanh button cho = none để bỏ nó đi*/
+    border-radius: 2px;/*Bo góc 2 button 2px*/
+    font-size: 1.5rem;
+    padding: 0 12px;/*Cho Icon Facebook cách biên trái Button 12px và bên phải 12px. Nếu làm v thì text "Kết nối vs facebook" và "Kết nối vs Google" sẽ xuống dòng làm cho Button mất hình dạng ban đầu nên phải css thêm vào class(.btn.btn--size-s thuộc tính padding) */
+    cursor: pointer;/*When hovering the mouse on the Button a hand image appear(Xuất hiện)*/
+    color: var(--text-color);
+    display: inline-flex;/*1 (Từ Flex sửa thành Inline-flex để các Button "Phổ biến, Mới nhất, Bán chạy" nằm trên cùng 1 hàng)*/
+    align-items: center;/*2*/
+    justify-content: center;/*3. 3 command này để canh Text trong Botton "Kết nối vs Facebook" và "Kết nối vs Google" ra vị trí giữa mà không làm ảnh hưởng đến 2 Button "TRỞ LẠI" và "ĐĂNG KÝ'*/ 
+    line-height: 1.6rem;
+}
+.btn.btn--normal:hover{
+    background-color: rgba(0, 0, 0, 0.4);/*Hover vào Button "TRỞ LẠI" thì đổi màu Background*/
+}
+
+.btn.btn--size-s{/*Chỉnh độ cao Button "Kết nối vs FaceBook" và "Kết nối vs Google"*/
+    height: 32px;
+    font-size: 12px;
+    padding: 0 8px;
+}
+.btn.btn--primary{/*Một Element có cả 2 class, viết class đầu tiên. cong tới class thứ 2. Không đc có dấu cách*/
+    background-color: var(--primary-color);
+    color: var(--while-color);
+}
+/*.btn.btn--primary:hover{/*Hover vào  nút xem giỏ hàng đổi màu
+    background-color: black;
+}*/
+
+.btn.btn--disabled{/*Để dành khi nào có Button không chp User nhấn vào thì không có hình Bàn tay khi hover vào Button đó*/
+    cursor: default;/*When hovering the mouse over Button there is not hand image*/
+    background-color: #c3c3c3;
+    color: #949494;
+}
+/*Selection*/
+.select-input{
+    height: 34px;
+    position: relative;
+    min-width: 200px;
+    padding: 0 12px;
+    border-radius: 2px;
+    background-color: var(--while-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.select-input__lable{
+    font-size: 1.4rem;
+    
+}
+.select-input__icon{
+    font-size: 1.4rem;
+    color: rgba(131, 131, 131);
+    position: relative;
+    top: 1px;
+}
+.select-input:hover .select-input__list{/*Khi Hover vào "select-input" thì hiện "select-input__list"*/
+    display: block;
+}
+.select-input__list{
+    z-index: 1;/*Giá nỏi lên danh sách hàng hóa*/
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: var(--while-color);
+    top: 25px;
+    border-radius: 2px;
+    padding: 8px 16px;
+    list-style: none;;
+    display: none; /*Ẩn đi khi hover thì cho hiện ra. Khi nào Hover vào Select-input thì hiện ra*/
+}
+.select-input__link{
+    text-decoration: none;
+    right: 0;/*Không có sẽ dy chuyển qua phải rất nhanh (không uyển chuyển)*/
+    position: relative;
+    font-size: 1.4rem;
+    color: var(--text-color);
+    display: block;
+    transition: right linear 0.3s;/*Định nghĩa chuyển động (right) */   
+    padding: 4px 0;
+}
+.select-input__link:hover{
+    color: #EE4D2D;
+    right: -4px;/*Chuyển động chạy qua bên phải*/
+}
+/*Pagination*/
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+.pagination-item{/*Đẩy các Button xa nhau ra*/
+    margin: 0 12px;
+}
+.pagination-item__link{
+    display: block;
+    text-decoration: none;
+    color: #939393;
+    min-width: 40px;
+    height: 30px;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;/*Số 1 ra giữa background màu đỏ*/
+    line-height: 30px;/*Số 1 bị lên cao cho line-hight bằng vs chiều cao của nó (hight) để nó xuống giữa*/
+}
+.pagination-item--active .pagination-item__link{
+    color: var(--while-color);
+    background-color: var(--primary-color);
+}
+.pagination-item--active:hover .pagination-item__link{
+    background-color: #333;
+}
+.pagination-item__icon{
+
+}
+
+
+
+
+

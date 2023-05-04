@@ -1,0 +1,1184 @@
+.header{
+    height: var(--header-height);
+    background-image: linear-gradient(0, #fe6433, #f53e2d);
+}
+.header__navbar{
+    display: flex;/*Cho 2 thẻ <ul> nằm trên cùng 1 hàng. Vì 2 thè <ul> là con chủa "header__navbar" nên phải css vào "header__navbar"*/
+    justify-content: space-between;/*Cho 2 thẻ <ul> Các xa nahu về 2 phía*/
+}
+.header__navbar-list{
+    list-style: none;/*Làm mấu dấm chấm các thẻ <li>*/
+    padding-left: 0;/*Mặc định của thẻ <ul> có "padding-left" = 40px nên chúng ta phải bỏ nó đi thì text sẽ ra sát biên trái trình duyệt*/
+    margin: 4px 0 0 0;/*Đưa text trong thẻ <ul> lên top 4px*/
+    display: flex;  
+}
+.header__navbar-item{
+    /*display: inline-block;/*Cho text nằm trên cùng một hàng "Các text trong thẻ <li>"*/
+    position: relative;
+    margin: 0 8px;
+    min-height: 26px;/*Chiêu cao tối thiểu là 26px*/
+    
+}
+.header__navbar-user{/*User và Name User trên màn hình*/
+    display: flex;
+    justify-items: center;
+    position: relative;
+}
+.header__navbar-user-img{/*Kích thước ảnh User*/
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.2);/*T5ao Border bao qunah ảnh user*/
+}
+.header__navbar-user-name{
+    margin-left: 4px;
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+.header__navbar-user:hover .header__navbar-user-menu{/*Hover vào User thì hiện ra "Tài khoản của tôi, Email của tôi"*/ 
+    display: block;
+    
+}
+.header__navbar-user-menu{
+    position: absolute;
+    padding-top: 7px;/*Text bị tam giác đè lên nên padding-top: để text "Tài khoản củ tôi" xuống không bị đè*/
+    padding-left: 0;
+    top: calc(100% + 4px);
+    right: 0;
+    background-color: var(--while-color);
+    border-radius: 2px;
+    width: 160px;
+    list-style: none;
+    display: none;/*Ẩn khi hover vào Use mới cho hiện ra*/
+    box-shadow: 0 1px 2px #ccc;/*Đổ bóng*/
+    z-index: 1;/*Bóng bonh1 số lượng giỏ hàng nổi lên cho "Z-index" để nó class menu nổi lên trên class bong bóng*/
+}
+.header__navbar-user-menu::before{/*Tạo hình tam giác trên bảng "Tài khoản của tôi, Email của tôi"*/
+    content: "";
+    border-width: 20px 27px;/*Hình chữ nhật. Cho tam giác thấp xuống*/
+    border-style: solid;
+    border-color: transparent transparent var(--while-color) transparent;/*Transparent là trong suốt*/
+    position: absolute;
+    right: 4px;
+    top: -29px;/*Để chồi lên*/
+}
+.header__navbar-user-menu::after{/*Tạo cầu nói cho User đến Menu khi hover từ ảnh user xuống menu không bị mất menu*/
+    content: "";
+    display: block;
+    position: absolute;
+    top: -8px;
+    right: 0;
+    width: 60%;
+    height: 8px;
+}
+.header__navbar-user-item{
+    
+}
+.header__navbar-user-item__separate{/*Ta5oc rạch đen 1px chia cách text "Đăng xuất" vs các text còn lại*/
+    border-top: 1px solid var(--black-color);
+}
+.header__navbar-user-item a{
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.4rem;
+    padding: 4px 16px;
+    display: block;
+}
+.header__navbar-user-item a:first-child{/*Khi hover vào "Tài khoản của tôi, Địa chỉ của tôi, Email của tôi" thì viền Border-Radius bị mất nên phải CSS làm sao khi hover vào viền Border-Radius không bị mất*/
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+.header__navbar-user-item a:hover{
+    background-color: #fafafa;
+}
+.header__navbar-item--has-qr:hover .header__qr{/*Những thuộc tính css đc viết trong "header__navbar-item--has-qr" sẽ đc apply vào "header__qr" khi "header__navbar-item--has-qr" được Hover vào*/
+    display: block;/*Sửa lại khác none là sẽ hiện lại "dùng block or những cái khác miễn sau khác none"*/
+    z-index: 1;/*Cho anh3 code QR nổi lên trên danh mục */
+}
+.header__navbar-item--has-notify:hover .header__notify{/*Hover hiện thông báo mới nhất*/
+    display: block;
+}
+.header__navbar-item{
+    margin:0 8px;/*Cho các text cách nhau ra trên dưới 0. Trái phải 8px*/
+}
+/*Thẻ <li> và thẻ <a> chứa text nên css cho cả 2 thẻ này*/
+.header__navbar-item,
+.header__navbar-item-link{
+    font-size: 1.3rem;/*Tương đương là 1px*/
+    color: var(--while-color);
+    text-decoration: none;/*Bỏ rạch chân thẻ <a>*/
+    font-weight: 300;/*Làm mỏng text*/
+}
+.header__navbar-item,
+.header__navbar-item-link,
+.header__navbar-icon-link{
+    display: flex;
+    align-items: center;
+}
+.header__navbar-item:hover,/*Thẻ <li> và thẻ <a> chứa text muốn hover vào đổi màu thì hover vào 2 thẻ này*/
+.header__navbar-icon-link:hover,/*Hover icon "Facebook và Instagram hình bàn tay và mờ đi"*/
+.header__navbar-item-link:hover{
+    color: rgba(0, 255, 255, 0.7);
+    cursor: pointer;/*Dy chuột vào ra hình bàn tay*/
+}
+.header__navbar-item--strong{
+    font-weight: 600;/*Cho text ""ĐN* "ĐK" đậm lên*/
+}
+.header__navbar-item--separate::after{
+    content: "";
+    display: block;
+    position: absolute;
+    /*width: 1px;*/
+    border-left: 1px solid #FB9086;
+    height: 16px;
+    right: -9px;/*Khoảng cách khoảng trống 2 bên là 8px và 8px nên để số âm cho thanh ngang "|" ra giữa khoảng trống*/
+    top: 50%;/*50% chiều cao của thẻ <li>*/
+    transform: translateY(-50%);/*Trừ 50% kích thước chiều cao của chính nó "là rơi vào khoảng 6px (thanh "|" sẽ đi lên)"*/
+    /*background-color: #FB9086;/*Nếu width heigh thì dùng "backgrounf-color"*/
+}
+.header__navbar-icon-link{
+    color: var(--while-color);/*Cho Icon Facebook và Instagram thành màu trắng*/
+    text-decoration: none;/*Bỏ rạch chân thẻ <a>*/
+}
+.header__navbar-icon-link:nth-child(2){/*Icon FaceBook cách "Kết nối" không đều như cách Icon Instagram Thg này năm thứ 2 nên ghi vào số 2(span trên nó là số 1). Class header__navbar-item có 3 thg con ("Kết nối" và 2 Icon FB và Instagram)*/
+    margin-left: 3px;
+}
+.header__navbar-icon{ /* Bôi đen Ctrl + D, B2: phím mũ tên phải để nhập nhiều nơi*/
+    font-size: 1.8rem;
+    margin:0 4px ;/*Các Icon cách xa nhau*/
+}
+.header__navbar-title--no-poniter{
+    cursor: text;/*Không cho text "Kết nối" có hình bàn tay khi di chuột vào*/
+    color: var(--while-color);/*Ghi đè hover không cho đổi màu*/
+}
+/*Header QR*/
+.header__qr{
+    top: 118%;/*Cao bằng thẻ chứa nó là thè <li>*/
+    background: var(--while-color);
+    width: 186px;
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    padding:  8px;
+    border-radius: 2px;
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
+    display: none;/*Ẩn ảnh QR khỏi web. Khi hover thì mới cho hiện ra*/
+    animation: fadeIn ease-in 0.5s;/*Tên Animation tạo bên "base.css" = fadeIn, kiểu chuyển động, thời gian chuyển động*/   
+}
+.header__qr::before{/*Hạ ảnh QR xướng cho đều vs text khoảng trên rìa web vs ảnh QR dưới text nên sẽ không hover xuống dưới đc vì hạ ảnh QR xuống nên phải tạo cầu nói để hover tới*/
+    position: absolute;
+    left: 0;
+    top: -16px;/*Cho cầu nói đi lên để bắt text vs ảnh QR*/ 
+    width: 100%;/*Bằng chính vs thg qr*/
+    height: 20px;
+    content: "";
+    display: block;
+}
+.header__qr-img{
+    width: 100%;
+}
+.header__qr-apps{
+    display: flex;/*Cho CH Play vs App Store lên ngang hàng vs nhau*/
+    justify-content: space-between;/*Cho 2 ảnh xa nhau ra 2 biên*/
+}
+.header__qr-link:nth-child(1){/*Cho ảnh CH Play ngang vs đường ảnh QR dọc xuống*/
+    margin-left: 11px;
+}
+.header__qr-link:nth-child(2){/*Cho ảnh App Store thẳng hàng vs đường biên ảnh QR bên phải dọc xuống*/
+    margin-right: 11px;
+}
+.header__qr-download-img{
+    height: 16px;/*Chiêu cao ảnh CH Play vs App Store*/
+}
+/*Header Notification*/
+/*Bôi đen tên class có phần đầu giống nhau sau đó Window + D để lấy thêm. Có chữ ngắn chữ dài trong tên class bên html. Sau đó Shift + Alt + Mũi tên phải*/
+.header__notify{
+    position: absolute;
+    z-index: 1;/*Thông báo bị đè dưới thanh tìm kiếm cho Z-index: 1; để nó nổi lên thanh thông báo*/
+    top: 118%;
+    width: 404px;
+    background-color: var(--while-color);
+    border-radius: 2px;/*Bo góc thông tin thông báo*/
+    border: 1px solid #D3D3D3;/*Viền nhỏ 1px xunf quanh notify*/
+    right: 0;/*Cho bảng notify ra bên phải*/
+    cursor: default;/*Đưa chuột vào text "Thông báo mới nhận" không ra hình bàn tay*/
+    /*transform-origin: 90% top;/*Định tâm của Transform qua bên góc phải trên (90% là dịch chuyển từ góc trái qua bên phải 90% (10% còn lại là điểm đó đến bên phải) Nó sẽ Animation ngay 90%). Nhưng sau này khi thay đồi kích thước thông báo thỉ tâm nó sẽ bị dời đi*/
+    transform-origin: calc(100% - 32px) top;/*Đưa nó vào hàm tính toán để sau này khi thay đổi kích thước nó không bị ảnh hưởng*/
+    animation: headerNotifyGrowth ease-in 0.3s;
+    will-change: opacity, transform;/*Nó cho trình duyệt bt là thuộc tính gì, animation gì sẽ thay đổi. Thì trình duyệt sẽ tối ưu hơn cho nó vs thg ".header__notify"*/
+    display: none;/*Cho ẩn Notify. Đi css khi nào Hover thì hiện ra*/
+}
+.header__notify::before{/*Tạo hình tam giác trên bảng Header Notification*/
+    content: "";
+    border-width: 20px 38px;/*Hình chữ nhật. Cho tam giác thấp xuống*/
+    border-style: solid;
+    border-color: transparent transparent var(--while-color) transparent;/*Transparent là trong suốt*/
+    position: absolute;
+    right: 4px;
+    top: -29px;/*Để chồi lên*/
+}
+.header__notify::after{/*T5ao cầu nói để hover tho6gn báo không bị mất khi di chuột qua điểm trống*/
+    content: "";
+    display: block;
+    position: absolute;
+    width: 90px;/*Bằng chiều dài px từ quả chương qua hết chữ thông báo*/
+    right: 0;
+    top: -11px;
+    height: 12px;
+}
+
+/*Aniamtion Notification*/
+@keyframes headerNotifyGrowth{/*Nở ra từ tâm*/
+    from{
+        opacity: 0;
+        transform: scale(0);/*Nhỏ */
+    } to{
+        opacity: 1;
+        transform: scale(1);/*Lớn*/
+    }
+}
+.header__notify-header{
+    height: 40px;
+    background-color: var(--while-color);
+}
+.header__notify-header h3{/*Có sử dụng 1 h3 nên làm vậy cho nhanh*/
+    color: #999;
+    margin: 0 0 0 12px;/*Default <h3> top có giá trị nên cho nó về bằng 0. 12px là cho text thụt vào 12px trái*/
+    font-weight: 400;
+    font-size: 1.4rem;
+    /*user-select: none;/*Thông co phép copy (Bôi đen)*/
+    cursor: text;/*Đưa vào text "Thông báo mới nhận" có hình (I) Cho phép copy*/
+    line-height: 40px;/*Chiều cao của dòng. Bằng vs chiều cao thg chứa nó là nó ra giữa */
+}
+.header__notify-list{
+    padding-left: 0px;/*Padding default của nó có giá trị = 40px nên cho nó bằng 0 để dính sát vào biên notify*/
+}
+.header__notify-item{
+    list-style: none;/*Bỏ dấu chấm thẻ <li>*/
+}
+.header__notify-item:hover{/*Hover vào các notify sẽ đỗi màu*/
+    background-color: #f1f1f1;
+}
+.header__notify-item--viewed{/*Đã đọc sẽ có màu trắng*/
+    background-color: rgba(238, 75, 43, 0.1);
+}
+.header__notify-link{
+    display: flex;/*Cho text tiêu đề notify và chi tiết notify lên cùng 1 hàng (Vì nó nằm trong thẻ <a> nên CSS vào trong thẻ <a>)*/
+    padding: 12px;/*Cho ảnh notify cách vào bên trái biên notify 12px*/
+    text-decoration: none;/*Bỏ rạch chân*/
+    width: 100%;/*Cho thẻ <a> lên 100% (chiến hết chiều ngang)*/  
+}
+.header__notify-img{
+    width: 48px;/*Có thuộc tính Flex nên ảnh bị méo*/
+    object-fit: contain;/*Cho ảnh hết bị méo*/
+}
+.header__notify-info{
+    margin-left: 12px;/*Cho text cách ảnh notify ra 12px*/
+}
+.header__notify-name{
+    color: var(--black-color);/*Màu text*/
+    font-weight: 600;/*Cho text đậm lên*/
+    font-size: 1.4rem;
+    line-height: 1.8rem;
+    display: block;/*Cho text tiêu đề và text chi tiết notify xuống dòng. Cách 2 có 2 nó vào 2 thẻ khác <span> vì thẻ <span> không có tính chất khối*/
+}
+.header__notify-descriotion{
+    font-size: 1.2rem;
+    margin-top: 4px;/*Cách xa text title*/
+    line-height: 1.4rem;/*Độ cao dòng cho sát lên text tiêu đề*/
+    color: #756F6E;/*Màu text*/
+}
+.header__notify-footer{
+    /*text-align: center;/*Căn text ra giữa bên trong nó*/
+    display: flex;/*Căn giữa một object trong một Object có Display: Flex thì cho Magrin: auto*/
+}
+.header__notify-footer-btn{
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 8px 32px;
+    font-size: 1.4rem;
+    font-weight:700;
+    margin: auto;/*Căn giữa một object trong một Object có Display: Flex thì cho Magrin: auto*/
+}
+.header__notify-footer-btn:hover{
+    background-color: var(--primary-color);/*Hover đổi màu xem tất cả*/
+    border-radius: 50%
+}
+.btn:hover{
+    background-color: black;
+}
+
+
+/*Auth Modal*/
+.auth-form{
+    width: 500px;
+    background-color: var(--while-color);
+    overflow: hidden;/*Khi thg con vượt quá thg cha thì làm gì "Hidden" ẩn nó đi thì sẽ thấy bo viền dưới khung ĐK*/
+    border-radius: 5px;/*Bo ở trên thôi phía dưới nhọn (vuông góc, socials nó là thg con lòi ra bên ngoài "default html vẫn hiển thị thg con lòi ra khỏi thg cha của nó")*/
+}
+.auth-form__group{   
+}
+.auth-form__container{
+    padding: 0 32px;
+}
+.auth-form__header{
+    display: flex;/*Cho Đăng nhập và Đăng ký lên chung cùng 1 hàng (nhưng nó không đều trên một đường thẳng)*/
+    align-items: center;/*Cho 2 text trên ngang nhau trên củng 1 hàng*/
+    justify-content: space-between;/*Cho 2 text xa nhau ra*/
+}
+.auth-form__heading{
+    font-size: 2.2rem;/*Cho text Đăng Ký to lên*/
+    font-weight: 400;/*Cho text mỏng đi*/
+}
+.auth-form__swich-btn{
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+.auth-form__input{
+    width: 100%;/*Cho thanh input dài bằng 100% của nó*/
+    height: 40px;/*Chiều cao của thanh input*/
+    border-radius: 2px;
+    margin-top: 16px;/*Cho các input cách nhau theo chiều dọc 16px*/
+    padding: 0 12px;/*Cho text cách trái ra 12px (text hiển thị thi yêu cầu người dùng đăng nhập)*/
+    font-size: 1.4rem;
+    border: 1px solid var(--border-color);
+    /*outline: none;/*Bỏ thuộc tính làm đậm viền khi click chuột từ người dùng để nhập vào*/
+}
+
+/*.auth-form__input:focus{/*Nếu cho outline: none; thì sử dụng css này để viền nổi
+    border-color: #777;
+}*/
+
+.auth-form__aside{
+    margin-top: 18px;/*Cho text "Bằng việc cung cấp..." cách input trên 18px*/
+}
+.auth-form__policy-text{
+    font-size: 1.2rem;
+    line-height: 1.8rem;/*Độ cao dòng (Khi bôi đen text trên web phần đc bao đen tính từ text đến phần ngoài rìa của text đc bôi đen thì đc gọi là độ cao dòng của text đó)*/
+    text-align: center;/*Căn text ra giữa*/
+}
+.auth-form__policy-link{
+    text-decoration: none;/*Bỉ rạch chân text trong thẻ <a>*/
+    color: var(--primary-color);
+}
+.auth-form__controls{
+    margin-top: 80px;  
+    display: flex;/*Chó Attribute này mới sử dụng đc câu lệnh ở phía dưới*/
+    justify-content: flex-end;/*Cho 2 Button "TRỞ LẠI" vs Button "ĐĂNG NHẬP" qua bên biên bên phải Ô Đăng Ký*/
+}
+.auth-form__controls-back{
+    margin-right: 8px;/*Button "TRỞ LẠI" vs "ĐĂNG NHẬP" cách nhau khoảng trắng 8px*/
+}
+.auth-form__socials{
+    background-color: #F5F5F5;
+    padding: 16px 36px;/*Kết nối vs Facebook vs Kết nối vs Google cách trên và dưới 16px, Trái cách biên trái 16px*/
+    display: flex;
+    margin-top: 22px;/*Cho 2 Button "Kết nối Facebook vs Google" cách Button "TRỞ LẠI và ĐĂNG NHẬP"cách nhau ra*/
+    justify-content: space-between
+}
+.auth-form__socials-icon{
+    font-size: 1.8rem;/*Font size "Kết nối vs Facebook" và "Kết nối vs Google"*/
+}
+.auth-form__socials--facebook{
+    color: var(--while-color);
+    background-color: #3A5A98;/*Cho background Button "Kết nối vs Facebook" màu xanh*/
+}
+.auth-form__socials--facebook
+.auth-form__socials-icon{
+    color: var(--while-color);
+}
+.auth-form__socials-title{
+    margin: 0 24px;/*Cho Icon Facebook vs text "Kết nối vs Facebook" cách nhau ra 24px*/
+}
+.auth-form__socials--google{
+    color: #666;/*Làm mờ text*/
+    background-color: var(--while-color);
+}
+.auth-form__help{
+    display: flex;
+    justify-content: flex-end;
+}
+.auth-form__help-link{
+    font-size: 1.4rem;
+    text-decoration: none;/*Bỏ rạch chân thẻ <a>*/
+    color: #939393;/*Màu text cho cả 2*/
+}
+.auth-form__help-separate{
+    display: block;
+    border-left: 1px solid var(--border-color);
+    height: 22px;
+    margin: 2px 16px 0;/*Cho 2 text cách xa nhau ra*/
+}
+.auth-form__help-link-forgot{
+    color: var(--primary-color);/*Màu text "quên mật khẩu" (Ghi đè thuộc tính màu đã set cho 2 text chung class"auth-form__help-link")*/
+}
+/*Header With Search*/
+.header-with-search{
+    height: var(--header-with-search-height);
+    display: flex;
+    align-items: center;/*Sửa trục cortasit*/
+    margin: 0 8px;/*Cho icon Shoppe vs chữ V của"Vào cửa hàng ứng dụng..."thẳng hàng*/
+}
+.header__logo{
+    width: 200px;
+}
+.header__logo-link{
+    text-decoration: none;
+    color: transparent;
+}
+.header__logo-img{
+    width: 150px;
+}
+.header__search{
+    flex: 1;/*Cho thanh tìm kiếm chiến hết chiều ngang còn lại. Cho giỏ hàng vào phía bên phải thì tự thanh tìm kiếm nó co lại (chiếm phần khoảng chống còn lạ mà logo Shoppe vs giỏ hàng đã lấy)*/
+    height: 40px;/*Chiều cao ô nhập tìm kiếm*/
+    background-color: var(--while-color);
+    border-radius: 2px;
+    display: flex;/*Cho "Trong Shop"* lên cùng hàng vs ô nhập search*/
+    align-items: center;/*Canh giữa trên dưới (chiều cao xuống) "Trong Shop"*/
+}
+.header__cart{
+    text-align: center;/*Icon Cart ra giữa*/
+    width: 150px;/*Đo từ chữ p của chữ "Đăng nhập" vào đến phía cuối của ô nhập tìm kiếm. Thì thanh tìm kiếm sẽ co lại (nó chỉ dài tới chữ Đ của "chữ Đăng nhập")*/
+    /* cursor: pointer; */
+}
+.header__cart-wrap{
+    position: relative;
+    display: inline-block;
+    padding: 0 8px;
+    cursor: pointer;
+}
+.header__cart-wrap:hover .header__cart-list{
+    display: block;
+    z-index: 1;/*"Sản phẩm đã thêm" Bị chìm dưới "giá thấp đến cao" cho index: 1; để nổi lên*/
+}
+.header__cart-list::after{
+    cursor: pointer;/*Class giả để dy chuột vài Icon giỏ hàng xuống phía dưới vẩn còn hình bàn tay*/
+    content: "";
+    position: absolute;
+    right: 3px;
+    top: -26px;
+    border-width: 16px 20px;
+    border-style: solid;
+    border-color: transparent transparent var(--while-color) transparent;
+}
+.header__cart-list{
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 1px;
+    background-color: var(--while-color);
+    width: 400px;
+    border-radius: 2px;
+    box-shadow: 0 1px 3.125rem 0 rgba(0, 0, 0, 0.2);
+    display: none;
+    animation: fadeIn ease-in 0.2s;
+    cursor: default;
+} 
+.header__cart-list--no-cart{
+    
+}
+.header__cart-icon{
+    font-size: 2.4rem;/*Tăng kích thước Cart*/
+    color: var(--while-color);/*Cho Cart thành màu trắng*/
+}
+.header__search-input-wrap{
+    flex: 1;
+    height: 100%;
+    position: relative;
+}
+.header__search-input{
+    width: 100%;/*100% của kích thước cha nó, nó nằm trong thanh search màu trắng (header__search-input-wrap)*/
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 1.4rem;
+    color: var(--text-color);
+    border-radius: 2px;/*Góc của Input tròi ra ngoài nên mất Border-radius của "header__search". Nên border__radius cho input, */
+    padding: 0 16px;/*Cho text "Nhập để tìm kiếm" cách rìa thanh search trái vs phải ra 16px*/
+}
+.header__search-select{/*Tạo thanh rạch xuống trc chữ "Trong Shop"*/
+    border-left: 1px solid #E8E8E8;
+    padding-left: 16px;
+    position: relative;
+    cursor: pointer;
+    /*z-index: 1;/*Cho Class này nổi lên trên "Xắp xếp theo, Phổ biến, Mới nhấtheader__navbar-lis*/
+}
+.header__search-select-lable{
+    font-size: 1.4rem;
+    color: var(--text-color);
+}
+.header__search-select-icon{
+    font-size: 1.4rem;
+    margin: 0 16px 0 8px;/*Attribute cho icon sổ xuống sau text "Trong Shop"*/
+    color: var(--text-color);
+    position: relative;
+    top: 1px;
+}
+.header__search-btn{
+    background-color: var(--primary-color);
+    position: relative;
+    width: 60px;/*Chiều dài Button Search trong thanh tìm kiếm*/
+    border: none;/*Thành phần sẽ không có đường viền (Nếu bỏ Attribute này thì Button sẽ Search sẽ có đường viền màu đen bao quanh Button) */
+    height: 34px;/*Chiều cao Button Search trong thanh tìm kiếm*/
+    font-size: 1.4rem;/*Kích thước icon Srearch trong Button Search trong thanh tìm kiếm*/
+    color: var(--while-color);/*Màu của Icon Search trong thanh tìm kiếm*/
+    border-radius: 3px;/*Bo viền của Button Search trong thanh tìm kiếm*/
+    margin-right: 3px;/*Button Search cách biên phải thanh tìm kiếm 3px*/
+    outline: none;
+}
+.header__search-btn:hover{/*Khi Hover vào Button Search trong thanh tìm kiếm sẽ đổi màu Button gốc sang màu này*/
+    background-color: #e6ab9f;
+    cursor: pointer;/*Chuột hình bàn tay khi nằm trong vùng của Button*/
+}
+.header__search-btn-icon{
+
+}
+.header__search-select:hover .header__search-option{/*Khi hover vào "header__search-select" thì mới hiện "header__search-option"*/
+    display: block;/*Nhưng đi dy chuột xuống thì bị mất "Cần tạo cầu nối"*/
+}
+.header__search-option{
+    position: absolute;
+    right: 0;/*Cho icon Check của "Trong Shop vs Ngoài Shop" thẳng hàng vs icon sổ xuống của "Trong Shop"*/
+    top: calc(100% + 4px);/*Bằng 100% của kích thước thằng chứa nó*/
+    width: 130PX;/*Chiều dài nơi chứa "Trong Shop và ngoài Shop"*/
+    list-style: none;/*Bỏ rạch chân thẻ <li>*/
+    box-shadow: 0 1px 2px #ccc;/*Đổ bóng*/
+    padding-left: 0;
+    /*overflow: hidden;/*Nhửng thg con có góc không dc Border-radious chọc ra ngoài nên bi border-radious cho thg cha thì những thg con đè lên nên không thấy đc border-radious của thg cha nên phải cho coverflow: hiden*/
+    /*Giá trị đầu: hướng bóng đổ trục x
+    Giá trị 2: hướng bóng đổ theo chiều ngang
+    Giá trị 3: Độ Bờ lơ (Bóng đổ)
+    */
+    border-radius: 3px;
+    animation: fadeIn ease-in 1s;/*Animain Khi hover vào "Trong Shop có tích sổ xuống"*/
+
+    display: none;/*Ẩn Trong Shop vs Ngoài Shop*//*Có Overlox vs Display: none; không sử dụng đc class giả để hiển thị "Trong Shop, Ngoài Shop" khi dy chuột xuống, nhưng bỏ đi phải đi giải quyết lỗi ở Border mà khi nãy tạo ra Overflox đã giải quyết đc*/
+}
+.header__search-option::after{/*Tạo Class giả làm cầu nói để khi dy chuột xuống không bị ẩn "Trong Shop và Ngoài Shop"*/
+    display: block;
+    content: "";
+    width: 100%;
+    height: 10px;
+    /* background-color: #3A5A98; */
+    top: -10px;
+    left: 0;
+    position: absolute;
+    /*Có overflox nên class giả này không sử dụng đc "Phải bỏ overflox"*/
+}
+.header__search-option-item{
+    background-color: var(--while-color);
+    padding: 8px 8px;
+    /* border-radius: 3px; */
+    /*text-align: right;/*Cho text vs icon "Trong Shop và Ngoài Shop" qua bên phải*/
+}
+/*Xử lý = cách Border-Radious trên của item và Border-Radious dười của icon dưới*/
+.header__search-option-item:first-child{
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.header__search-option-item:last-child{
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+.header__search-option-item:hover{/*Hover đổi màu Trong Shop vs Ngoài vs Shop*/
+    /* background-color: #e6ab9f; Màu của cầu nói "Trong Shop vs Ngoài Shop" */
+    cursor: pointer;
+}
+.header__search-option-item span{
+    font-size: 1.4rem;
+    color: var(--text-color);
+    margin-left: 8px;/*Cho text vs icon Trong Shop vs Ngoài Shop*/
+}
+.header__search-option-item i{
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-left: 12px;/*Chỉnh thông số Trong Shop vs ngoài Shop vs icon của cả 2 thẳng hàng so vs "Trong Shop"*/
+    display: none;/*Ẩn icon check trong text "Trong Shop vs Ngoài Shop"*/
+}
+.header__search-option-item--active i {
+    display: inline-block;/*Không inline-block thì sẽ bị nhảy xuống dòng*/
+}
+/*Search History*/
+.header__search-input:focus ~ .header__search-history{/*Khi đặt con chỏ chuột vào Input thì hiện ra History (CSS Selector Focus W3School)*/
+    display: block;
+    /* z-index: 1; */
+}
+.header__search-history{
+    position: absolute;
+    top: calc(100% + 2px);/*Cho History xuống dưới ô nhập tìm kiếm*/
+    left: 0;
+    width: calc(100% - 16px);
+    background-color: var(--while-color);
+    border-radius: 3px;
+    box-shadow: 0 1px 3px #666;
+    display: none;
+    z-index: 1;
+}
+.header__search-history-heading{
+    margin: 6px 12px;/*Text*/
+    font-size: 1.4rem;
+    color: #999;
+    font-weight: 400px;
+}
+.header__search-history-list{
+    padding-left: 0;
+    list-style: none;
+    /*margin-bottom: 0;/*thẻ <ul> có Margin-bottom default có giá trị, cho nó bằng 0*/
+    margin: 6px 0 0;   
+}
+.header__search-history-item{
+    height: 38px;
+    padding: 0 12px;
+    cursor: pointer;
+}
+.header__search-history-item:last-child{/*Khi Hover vào sẽ mất Border-Radious của thg item cuối (Thg trên cùng không cần vì nó là text "Lịch sử tìm kiếm" không phải là item "Ta set hover vào các item")*/
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+.header__search-history-item:hover{/*Hove History*/
+    background-color: var(--primary-color);
+}
+.header__search-history a{
+    text-decoration: none;
+    line-height: 38px;
+    font-size: 1.4rem;
+    color: var(--text-color);
+}
+.header__cart-list{
+    display: none;/*Ẩn danh sách giò hàng, khi hover vào mới cho hiện ra*/
+    position: absolute;
+    margin-top: 9px;
+    top: calc(100% +4px);
+    right: -3px;
+    background-color: var(--while-color);
+    width: 400px;
+    border-radius: 2px;
+    box-shadow: 0 1px 3.125rem 0 rgba(0, 0, 0, 0.2);
+    animation: fadeIn ease-in 0.5s;
+}
+.header__cart-heading{
+    text-align: left;/*Cho text tiêu đề nhảy sang trái*/
+    margin: 8px 0 8px 12px;/*Cho margin left = 12px để thẳng hàng vs css đã set cho ảnh giỏ hàng cũng cách left 12px*/
+    font-size: 1.4rem;
+    color: #999;
+    font-weight: 400;
+}
+.header__cart-list-item{
+    padding-left: 0; 
+    list-style: none;
+    height: 70vh;/*Giới hạn kích thước thông báo*/
+    overflow-y: auto;
+}
+.header__cart-item{
+    /* display: block; */
+    /*position: relative;/*Thiếu không chuyển động đc*/
+    display: flex;
+    align-items: center;/*Ảnh và text trong giỏ hàng nhìn giữa hơn*/
+    /* transition: right linear 0.3s; */
+    /* right: 0; Làm cho chuyển động mượt hơn */
+}
+.header__cart-item:hover{/*Hover vào danh sách giỏ hàng thì đổi màu thông tin về hàng hóa đó*/
+    background-color: #F8F8F8;
+    /* right: -4px; */
+}
+.header__cart-view-cart{
+   
+    float: right;/*Đẩy Button Xem Giỏ Hàng sang Right*/
+    margin: 0 12px 12px 0;/*Trên Button cách 12px rồi h xho right vs Bottom 12px xho cân xứng*/
+}
+.header__cart-view-cart:hover{/*Hover Button Xem giỏ hàng thành m,àu đen bị Error*/
+    background-color: black;
+}
+.header__cart-img{
+    width: 42px;
+    height: 42px;
+    margin: 12px ;
+    border: 1px solid var(--border-color);/*Viền Border cho ảnh giỏ hàng*/
+}
+.header__cart-item-info{
+    width: 100%;
+    margin-right: 12px;/*Cho cả khối div cách phải vào 12px cho cân đối nội dung "header__cart-item-info" chứa class "header__cart-item-head" nên css vào trên đỡ css vào class còn lại*/
+}
+.header__cart-item-head{
+    display: flex;
+    align-items: center;/*Cho "Bộ kem đặc trị vùng mắt" vs giá ngang nhau*/
+    justify-content: space-between;/*Cho 2 anh xa nhau ra*/
+}
+.header__cart-item-name{
+    max-height: 4rem;/*Nếu để Hight không thì text tiêu đề vs mô tả khi text ngắn sẽ cách nhau rất xa nên phải cho max-hight để không bị tình trạng này vs các text ngắn (text tiêu đề chiếm 1 dòng thay vì text tiêu đề dài chiếm 2 dòng)*/
+    overflow: hidden;
+    flex: 1;
+    padding-right: 16px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;/*Các code trên để xử lý khi tiêu đề quá dài làm hỏng bố cục(text bị đâm ra ngoài)*/
+    text-align: left;/*Chỉnh code ở trên khì các text tiêu đề ngắn bị đưa ra giữa nên cho nó về lại bên trái*/
+    line-height: 2rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-color);
+    margin: 0;/*Thẻ <h> có margin defaul nên css cho nó = 0*/
+}
+.header__cart-item-price{
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--primary-color);
+}
+.header__cart-item-multiply{
+    font-size: 0.9rem;
+    margin:  0 4px;
+    color: #757575;
+}
+.header__cart-item-qnt{
+    color: #757575;
+    font-size: 1.2rem;
+}
+.header__cart-item-body{
+    /*text-align: left;/*Cho text "Phân loại qua bên trái"*/
+    display: flex;
+    justify-content: space-between
+}
+.header__cart-item-description{
+    color: #757575;
+    font-weight: 300;
+    font-size: 1.2rem
+}
+.header__cart-item-remove{
+    color: var(--text-color);
+    font-size: 1.4rem
+}
+.header__cart-item-remove:hover{/*Đổi màu text "Xóa" khi hover vào (Set vào Color không phải Background-color)*/
+   color: #f53e2d;
+   cursor: pointer;/*Xóa có hình bàn tay khi Hover vào*/
+}
+.header__cart-list--no-cart .header__cart-no-cart-img,/*Khi Cart trống thì hiện ảnh giỏ hàng trống + vs text*/
+.header__cart-list--no-cart .header__cart-list-no-cart-msg{
+    margin-left: auto;/*Ảnh bị nghiên về phía trái set chó nó ra giữa*/
+    margin-right: auto;/*Ảnh bị nghiên về phía trái set chó nó ra giữa*/
+    display: block;
+}
+.header__cart-list--no-cart{
+    padding: 24px 0;
+}
+.header__cart-no-cart-img{
+    width: 54%;
+    display: none;
+}
+.header__cart-list-no-cart-msg{
+    display: none;
+    font-size: 1.4rem;
+    color: var(--text-color);
+    margin-top: 14px;
+}
+.header__cart-notice{
+    position: absolute;
+    border: 3px var(--black-color);
+    top: -4px;/*Độ cao số 3*/
+    right: -10px;/*Hướng qua phải số 3*/
+    padding: 1px 7px;
+    background-color: var(--while-color);
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    border-radius: 10px;
+}
+
+
+/*App Container*/
+.app__content{
+    padding-top: 36px;/*Cho danh mục, phổ biến, mới nhất padding xuống nếu margin thì sẽ lòi khoảng trắng*/
+}
+.app__container{
+    background-color: #F5F5F5;
+}
+.category{
+    border-radius: 2px;
+    background-color: var(--while-color);
+}
+.category__heading{
+    color: var(--text-color);
+    text-transform: uppercase;/*Viết in hoa*/
+    font-size: 1.6rem;/*Set cua cả i cái "DANH MỤC" và icon trc text DANH MỤC nhưng Class icon font-size riêng nên nó ưu tiên hơn*/
+    padding: 16px 16px 0;
+    margin-top: 0;/*Cho danh mục sát lên header, vì thẻ S<h3> có khoảng cách mặc định*/
+    border-bottom: 1px solid var(--text-color);
+}
+.category-list{
+    padding: 0 0 8px 0;/*Cho padding list dưới cuối dài ra cho nhìn đều list trên và list dưới*/
+    list-style: none;
+    /*margin-left: 12px;/*Text thục vào trong icon danh sách cho đẹp*/
+}
+.category-item:first-child::before{/*Ẩn viển border đầu tiên của item (Vì đã có viền border của "Danh mục" nếu để viền trên của border item thì sẽ có 2 viền Border )*/
+    display: none;
+}
+.category-item{
+    position: relative;
+}
+.category-item::before{/*Class giả tạo viền Border cho các item*/
+    content: "";
+    top: 0;
+    position: absolute;
+    border-top: 1px solid #E1E1E1;
+    left: 20px;
+    right: 20px;
+}
+.category-item--active{
+
+}
+.category-item__link{
+    position: relative;/*Cho nó cố định bên phải để khi hover vào nó vừa đổi màu vừa chạy qua bên phải*/
+    right: 0;/*Chạy từ 0 đến -4 của "category-item__link"*/
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.6rem;
+    padding: 8px 20px;
+    display: block;
+    transition: right linear 0.3s;/*Định nghĩa chuyển động (right) */   
+}
+.category-item__link:hover{
+    right: -4px;/*Chuyển động chạy qua bên phải*/
+    color: var(--primary-color);
+}
+.category-item--active .category-item__link{
+    color: var(--primary-color);/*<li> của text "Trang điểm mặt có class "active" và css cho "active" cộng vs class "item__link" thì text của thẻ <li> và thẻ <a> chứa class "active" sẽ có màu red riêng vs các "text cỏn lại"*/
+}
+.category-item--active .category-item__link::before{/*Tam giác text Trang điểm mặt*/
+    top: 50%;/*50% của thg chứa nó <a>*/
+    left: 4px;
+    content: "";
+    position: absolute;
+    border: 4px solid;
+    transform: translateY(calc(-50%));/*Dịch chuyển trục dọc/ 50% của chính nó thế nên nó quay lại một nửa của chính nó, nó lên trên*/
+    border-color: transparent transparent transparent var(--primary-color);
+}
+
+
+/*Home Sort + Filter*/
+.home-filter{
+    display: flex;/*Tất cả nằm ngang*/
+    background-color: rgba(0, 0, 0, 0.04);
+    align-items: center;/*Cho các text nằm giữa*/
+    padding: 12px 22px;
+    border-radius: 3px;
+    position: relative;   
+}
+.home-filter__lable{
+    font-size: 1.4rem;
+    color: #555555;
+    margin-right: 16px;
+}
+.home-filter__page{
+    display: flex;
+    align-items: center;
+}
+.home-filter__btn{
+    min-width: 90px;
+    margin-right: 12px;
+}
+.home-filter__page{/*Cho số trang 1/14 qua bên phải thanh*/
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+.home-filter__page-num{
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-right: 22px;
+}
+.home-filter__page-current{
+    color: var(--primary-color);
+}
+.home-filter__page-control{
+    border-radius: 2px;
+    overflow: hidden;
+    /*Kích thước Cho Button chuyển trang*/
+    display: flex;
+    width: 72px;
+    height: 36px;   
+}
+.home-filter__page-btn{
+    display: flex;
+    flex: 1;/*Để 2  Button chuyển trang tự đông chia đôi khoản cách ra*/
+    background-color: var(--while-color);
+    text-decoration: none;/*Bỏ rạch chân icon chuyển trang*/
+}
+.home-filter__page-btn:first-child{/*Tạo border tách 2 button chuyển trang (Set border-right cho button đầu để tạo đường viền chia 2 button)*/
+    border-right: 1px solid #eee;
+}
+.home-filter__page-icon{/*Chi icon chuyển trang ra giữa (không bị lệch lên trên)*/
+    margin: auto;
+    font-size: 1.4rem;
+    color: #555;
+}
+.home-filter__page-btn--disabled{
+    background-color: #f9f9f9;
+    cursor: default;/*Mất hình bàn tay khi hover vào Button, Vì đang ở trang 1 nên không cho phép Uswr ấn chuyển về trang trước trang 1, chỉ có thể ấn trang 2 trở đi 
+    sau đó mới ấn chuyển về trang 1 được*/
+}
+.home-filter__page-btn--disabled .home-filter__page-icon{
+    color: #ccc;
+}
+.home-product-item__sale-off-persent{
+    
+}
+.home-product{
+    margin-bottom: 10px;/*Các product cách bottom web 10px*/
+}
+.home-product-item{
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    position: relative;
+    background-color: var(--while-color);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+    transition: transform linear 0.1s;/*Khi có chuyển động tạo Animation cho cái gì (liner là kiểu chuyển động điều)*/
+    will-change: transform;
+    display: block;
+    text-decoration: none; 
+    margin-top: 10px;/*Các ô hàng hóa cách xuống 10px, cho đều cách trái vs phải xung quanh*/
+}
+.home-product-item:hover{/*Hover đổi Box Shadow*/
+    transform: translateY(-12px);/*Khi hover nhảy lên trên 12px*/
+    box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.05);
+}
+.home-product-item__img{
+    padding-top: 100%;/*Chiều ngang của thẻ chứa nó(Ảnh hiện ra)*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;/*Soi vào trọng tâm bức ảnh*/
+}
+.home-product-item__name{
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--text-color);
+    line-height: 1.8rem;
+    height: 3.6rem;/*Set chiều dài dòng*/
+    margin: 10px 10px 6px;/*Bottom Text px cho text cách giá ngắn lại*/
+    overflow: hidden;/*Ẩn đi text dài hơn 2 dòng*/
+    display: block;
+    /*Tại dấu 3 chấm cho text quá dài*/
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    /* css cho các brosew khác hiểu */
+}
+.home-product-item__price{
+    display: flex;   
+    align-items: baseline;/*Cho giá trc và giá sau có đít chữ nằm trên cùng đường thẳng*/
+    flex-wrap: wrap;/*Khi giá dài tự động nhảy xuống dòng (không bị dâm ra ngoài)*/
+}
+.home-product-item__price-old{
+    font-size: 1.4rem;
+    margin-left: 10px;
+    color: #666;
+    text-decoration: line-through;/*Gạch ngang giá tiền*/
+}
+.home-product-item__price-current{
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin-left: 10px;
+}
+.home-product-item__action{
+    display: flex;
+    margin: 6px 10px 0;/*Cho 2 ông cách biên 10px*/
+    justify-content: space-between;/*Cho 2 ông ra biên trang*/
+}
+.home-product-item__like{
+    font-size: 1.3rem;
+}
+.home-product-item__origin{
+    display: flex;
+    color: var(--black-color);
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: 300;   
+    margin: 3px 10px 0;/* 10px left right Who vs Nhật Bản thẳng hàng vs 88 đã bán vả icon heart*/
+}
+.home-product-item__origin__brand{
+    
+}
+.home-product-item__origin-name{
+
+}
+.home-product-item__sale-off{
+
+}
+.home-product-item__sale-off-persent{
+
+}
+.home-product-item__sale-off-lable{
+    color: var(--while-color);
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+    position: relative;
+    top :- 10px;
+}
+.home-product-item__favourite{
+    position: absolute;
+    top: 10px;
+    left: -4px;/*Chòi ra bên trái ảnh sản phẩm*/
+    background-color: currentColor;/*Ăn theo màu color cha nó*/
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.6rem;
+    padding-right: 4px;/*Cho nền yêu tích thêm bên phải 5px*/
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+.home-product-item__favourite i{/*Giảm kích thước icon yêu thích*/
+    font-size: 0.9rem;
+    color: var(--while-color);
+    margin: 0 2px 0 5px;/*icon yêu tích thụt vào*/
+}
+.home-product-item__favourite::after{/*Tam giác 40 độ góc yêu thích*/
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    border-top: 3px solid currentColor;/*Ăn theo màu color cha nó*/
+    border-left: 3px solid transparent;
+    filter: brightness(40%);/*Giảm độ sáng tam giác dưới "yêu thích" 40%*/
+    /*vì background lòi ra 4 nên set = 3 để tạo cảm giác có băng xung quanh ảnh sản phẩm*/
+}
+.home-product-item__favourite span{
+    color: var(--while-color);
+}
+.home-product-item__rating{/*Ngôi sao*/
+    font-size: 1rem;
+    transform: scale(0.8);/*Chỉnh kích thước 5 ngôi sao*/
+    transform-origin: right;/*Tâm thu nhỏ góc phải nếu không có nó sẽ to và nhỏ theo hướng trung tâm*/
+    color: #D5D5D5;/*Cho 5 ngôi sau màu bạc*/
+    margin-left: -1px 0 0 auto;/*Đẩy 5 ngôi sao sang text đã bán 88 đít ngôi sao ngang hàng vs text*/
+}
+.home-product-item__start--gold{/*Sao vàng*/
+    color: var(--start-gold-color);
+}
+.home-product-item__like--liked .home-product-item__like-icon-fill{
+    display: inline-block;
+}
+.home-product-item__like--liked .home-product-item__like-icon-empty{
+    display: none;
+}
+.home-product-item__like-icon-empty{
+
+}
+.home-product{
+    margin-bottom: 10px;
+}
+.home-product-item__like-icon-fill{/*Ẩn heart black when click heart white will hiện ra heart black*/
+    display: none;
+    color: #F63D30;
+} 
+.home-product-item__sold{/*Text đã bán*/
+    font-size: 1.2rem;
+    margin-left: 8px;/*Text cách 5 ngôi sao 8px*/
+    color: var(--text-color);
+}
+.home-product-item__sale-off{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 36px;
+    text-align: center;/*Text ra giữa*/
+    background-color: rgba(255, 216, 64, 0.94);
+}
+.home-product-item__sale-off::after{/*2 góc lòi xuống Giảm giá*/
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    top: 36px;
+    border-width: 0 20px 6px;
+    border-style: solid;
+    border-color: transparent rgba(255, 216, 64, 0.94) transparent rgba(255, 216, 64, 0.94);
+}
+.home-product-item__sale-off-persent{
+    color: #EE4D2D;
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 1.3rem;
+}
+.home-product-item__sale-off-lable{
+    font-weight: 600;
+    color: var(--while-color);
+    font-size: 1.2rem;
+    line-height: 1.3rem;
+}
+.home-product__pagination{/*Các số trang cách danh sách các product 56px*/
+    margin: 48px 32px;
+}
+.footer{
+    border-top: 4px solid var(--primary-color);
+    padding-top: 16px;/*Các text phía dưới đường kẻ cách xuống*/
+}
+.footer__heading{
+    font-size: 1.2rem;
+    text-transform: uppercase;/*Cho các chữ viết in*/
+}
+.footer__list{
+    padding-left: 0;
+    list-style: none;/*Dấu chấm <li>*/
+}
+.footer-item{
+    
+}
+.footer-item__link{
+    text-decoration: none;/*Gạch chân <a>*/
+    font-size: 1.2rem;
+    align-items: center;
+    color: #666;
+    padding: 4px 0;/*Các dòng text cách xa nhau*/
+    display: flex;/*Không cho display: block sẽ không nhìn thấy nó cách xa nhau ra*/
+    right: 0;/*Không có chuyển động không mượt*/
+    /* display: block; */
+    transition: right linear 0.3s;
+    position: relative;
+}
+.footer-item__link:hover{
+    color: var(--primary-color);
+    right: -4px;
+}
+.footer-item__icon{
+    font-size: 1.6rem;
+    margin: -1px 8px 0;/*Magrin cho icon cách text*/
+}
+.footer__download{
+    display: flex;
+}
+.footer__download-qr{
+    width: 80px;
+    height: 80px;/*Cho hight: 80px; thì không cần sử dụng Object-fit*/
+    border: 1px solid var(--border-color);
+    /*object-fit: contain;/*Ảnh bị méo cho thuộc tính này 9d63 ảnh không bị kéo dài*/
+}
+.footer__download-app-icon{
+    flex: 1;
+    margin-left: 16px;
+    height: 16px;
+}
+.footer__download-app-link{
+    color: transparent;
+    text-decoration: none;
+}
+.footer__bottom{
+    background-color: #9999;
+    padding: 8px 0;
+    margin-top: 36px;
+}
+.footer__text{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.4rem;
+    text-align: center;/*Text ra giữa*/ 
+}
+
+
+
+
+
+
+
