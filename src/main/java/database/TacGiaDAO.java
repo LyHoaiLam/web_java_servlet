@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import model.TacGia;
 public class TacGiaDAO implements DAOInterface<TacGia>{
 
-
-
     @Override
 	public ArrayList<TacGia> selectAll() {
 		ArrayList<TacGia> ketQua = new ArrayList<TacGia>();// Tạo ra một ArrayList TacGia
@@ -45,7 +43,6 @@ public class TacGiaDAO implements DAOInterface<TacGia>{
 			// Bước 5:
 			JDBCUtil.closeConnection(con);//Đóng CSLD
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return ketQua;
@@ -82,10 +79,8 @@ public class TacGiaDAO implements DAOInterface<TacGia>{
 			
 			e.printStackTrace();
 		}
-		
 		return ketQua;
 	}
-
 
 
 
@@ -134,7 +129,6 @@ public class TacGiaDAO implements DAOInterface<TacGia>{
 	public int delete(TacGia t) {
 		int ketQua = 0;
 		try {
-
 			Connection con = JDBCUtil.getConnection();	
 			String sql = "DELETE from tacgia "+
 					 " WHERE matacgia=?";			
@@ -172,7 +166,6 @@ public class TacGiaDAO implements DAOInterface<TacGia>{
 	public int update(TacGia t) {
 		int ketQua = 0;
 		try {
-			
 			Connection con = JDBCUtil.getConnection();
 			String sql = "UPDATE tacgia "+
 					 " SET " +
@@ -201,9 +194,7 @@ public class TacGiaDAO implements DAOInterface<TacGia>{
 	}
 	
 
-
 	public static void main(String[] args) {
-
 		TacGiaDAO tgd = new TacGiaDAO();
 		// ArrayList<TacGia> kq = tgd.selectAll();
 		// for (TacGia tacGia : kq) {

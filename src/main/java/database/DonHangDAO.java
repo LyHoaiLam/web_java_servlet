@@ -9,15 +9,16 @@ import java.util.ArrayList;
 
 import model.DonHang;
 import model.KhachHang;
-//import model.TacGia;
+
 public class DonHangDAO implements DAOInterface<DonHang>{
+
     @Override
-	public ArrayList<DonHang> selectAll() {
+	public ArrayList<DonHang> selectAll(){
 		
 		ArrayList<DonHang> ketQua = new ArrayList<DonHang>();
 		Connection con = JDBCUtil.getConnection();
 		String sql = "SELECT * FROM donhang";
-		try {
+		try{
 			PreparedStatement st = con.prepareStatement(sql);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
@@ -38,19 +39,20 @@ public class DonHangDAO implements DAOInterface<DonHang>{
 				ketQua.add(dh);
 			}
 			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		}catch(SQLException e){
 			e.printStackTrace();
 		}
 		return ketQua;
 	}
 
+
+
 	@Override
-	public DonHang selectById(DonHang t) {
+	public DonHang selectById(DonHang t){
 		DonHang ketQua = null;
 		Connection con = JDBCUtil.getConnection();
 		String sql = "SELECT * FROM donhang WHERE madonhang = ?";
-		try {
+		try{
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, t.getMaDonHang());
 			ResultSet rs = st.executeQuery();
@@ -69,24 +71,24 @@ public class DonHangDAO implements DAOInterface<DonHang>{
 				KhachHang khachHang = new KhachHangDAO()
 						.selectById(new KhachHang(maKH, "", "", "", "", "", "", "", null, "", "", false));
 						DonHang dh = new DonHang(maDH, khachHang, diaChiNguoiMua, diaChiNhanHang, trangThai, hinhThucThanhToan, trangThai, soTienDaThanhToan, soTienConThieu, ngayDatHang, ngayGiaoHang);
-
 				ketQua = dh;
 			}
 			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		}catch(SQLException e){
 			e.printStackTrace();
 		}
 		return ketQua;
 	}
 
+
+
 	@Override
-	public int insert(DonHang t) {
+	public int insert(DonHang t){
 		int kq = 0;
 		Connection con = JDBCUtil.getConnection();
 		String sql = "INSERT INTO donhang(madonhang, khachhang, diachinguoimua, diachinguoinhan, trangthai, thanhtoan,tienthanhtoan, tienthieu,ngaydathang,ngaygiaohang)"
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		try {
+		try{
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, t.getMaDonHang());
 			st.setString(2, t.getKhachHang().getMaKhacHang());
@@ -102,56 +104,63 @@ public class DonHangDAO implements DAOInterface<DonHang>{
 
 			kq = st.executeUpdate();
 			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		}catch(SQLException e){
 			e.printStackTrace();
 		}
 		return kq;
 	}
 
+
+
 	@Override
-	public int insertAll(ArrayList<DonHang> arr) {
+	public int insertAll(ArrayList<DonHang> arr){
 		int kq = 0;
-		for (DonHang donHang : arr) {
+		for(DonHang donHang : arr){
 			kq += this.insert(donHang);
 		}
 		return kq;
 	}
 
+
+
 	@Override
-	public int delete(DonHang t) {
+	public int delete(DonHang t){
 		int kq = 0;
 		Connection con = JDBCUtil.getConnection();
 		String sql = "DELETE FROM donhang WHERE madonhang = ?";
-		try {
+		try{
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, t.getMaDonHang());
 			kq = st.executeUpdate();
 			con.close();
-		} catch (SQLException e) {
+		}catch(SQLException e){
 			e.printStackTrace();
 		}
 		return kq;
 	}
 
+
+
 	@Override
-	public int deleteAll(ArrayList<DonHang> arr) {
+	public int deleteAll(ArrayList<DonHang> arr){
 		int kq = 0;
-		for (DonHang t : arr) {
+		for(DonHang t : arr){
 			kq += this.delete(t);
 		}
 		return kq;
 	}
 
+
+
 	@Override
-	public int update(DonHang t) {
+	public int update(DonHang t){
 		int kq = 0;
 		Connection con = JDBCUtil.getConnection();
 
 		String sql = "UPDATE donhang" + " SET " + "khachhang=?" + ", diachinguoimua=?" + ",diachinguoinhan=?"
 				+ ",trangthai=?" + ",thanhtoan=?" + ",tienthanhtoan=?" + ",tienthieu=?" + ",ngaydathang=?"
 				+ ",ngaygiaohang=?" + " WHERE madonhang=?";
-		try {
+		try{
 			PreparedStatement st = con.prepareStatement(sql);
 			st.setString(1, t.getKhachHang().getMaKhacHang());
 			st.setString(2, t.getDiaChiMuaHang());
@@ -167,20 +176,11 @@ public class DonHangDAO implements DAOInterface<DonHang>{
 
 			kq = st.executeUpdate();
 			con.close();
-		} catch (SQLException e) {
+		}catch(SQLException e){
 			e.printStackTrace();
 		}
 		return kq;
 	}
-
-
-
-
-
-
-
-
-
 
 	
 

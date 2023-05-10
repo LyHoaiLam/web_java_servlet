@@ -1,16 +1,14 @@
 package database;
 
 import java.sql.Connection;
-// import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-// import model.TacGia;
 import model.TheLoai;
 public class TheLoaiDAO implements DAOInterface<TheLoai>{
-    private ArrayList<TheLoai> data = new ArrayList<>();
+    //private ArrayList<TheLoai> data = new ArrayList<>();
 
 	@Override
 	public ArrayList<TheLoai> selectAll() {
@@ -35,16 +33,16 @@ public class TheLoaiDAO implements DAOInterface<TheLoai>{
 				TheLoai tl = new TheLoai(maTheLoai, tenTheLoai);
 				ketQua.add(tl);
 			}
-
 			// Bước 5:
 			JDBCUtil.closeConnection(con);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
-
 		return ketQua;
 	}
+
+
 
 	@Override
 	public TheLoai selectById(TheLoai t) {
@@ -73,12 +71,14 @@ public class TheLoaiDAO implements DAOInterface<TheLoai>{
 			// Bước 5:
 			JDBCUtil.closeConnection(con);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
 		return ketQua;
 	}
+
+
 
 	@Override
 	public int insert(TheLoai t) {
@@ -105,12 +105,13 @@ public class TheLoaiDAO implements DAOInterface<TheLoai>{
 			// Bước 5:
 			JDBCUtil.closeConnection(con);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
-		}
-		
+		}	
 		return ketQua;
 	}
+
+
 
 	@Override
 	public int insertAll(ArrayList<TheLoai> arr) {
@@ -120,6 +121,8 @@ public class TheLoaiDAO implements DAOInterface<TheLoai>{
 		}
 		return dem;
 	}
+
+
 
 	@Override
 	public int delete(TheLoai t) {
@@ -146,12 +149,13 @@ public class TheLoaiDAO implements DAOInterface<TheLoai>{
 			// Bước 5:
 			JDBCUtil.closeConnection(con);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-		
 		return ketQua;
 	}
+
+
 
 	@Override
 	public int deleteAll(ArrayList<TheLoai> arr) {
@@ -161,6 +165,8 @@ public class TheLoaiDAO implements DAOInterface<TheLoai>{
 		}
 		return dem;
 	}
+
+
 
 	@Override
 	public int update(TheLoai t) {
@@ -190,10 +196,9 @@ public class TheLoaiDAO implements DAOInterface<TheLoai>{
 			// Bước 5:
 			JDBCUtil.closeConnection(con);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
-		
 		return ketQua;
 	}
 }

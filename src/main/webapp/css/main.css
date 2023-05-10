@@ -28,7 +28,7 @@
     height: 22px;
     width: 22px;
     border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, 0.2);/*T5ao Border bao qunah ảnh user*/
+    border: 1px solid rgba(0, 0, 0, 0.2);/*Tạo Border bao qunah ảnh user*/
 }
 .header__navbar-user-name{
     margin-left: 4px;
@@ -57,7 +57,7 @@
     content: "";
     border-width: 20px 27px;/*Hình chữ nhật. Cho tam giác thấp xuống*/
     border-style: solid;
-    border-color: transparent transparent var(--while-color) transparent;/*Transparent là trong suốt*/
+    border-color: transparent transparent transparent transparent;/*Transparent là trong suốt*/
     position: absolute;
     right: 4px;
     top: -29px;/*Để chồi lên*/
@@ -71,10 +71,8 @@
     width: 60%;
     height: 8px;
 }
-.header__navbar-user-item{
-    
-}
-.header__navbar-user-item__separate{/*Ta5oc rạch đen 1px chia cách text "Đăng xuất" vs các text còn lại*/
+
+.header__navbar-user-item__separate{/*Tạo rạch đen 1px chia cách text "Đăng xuất" vs các text còn lại*/
     border-top: 1px solid var(--black-color);
 }
 .header__navbar-user-item a{
@@ -318,8 +316,7 @@
     overflow: hidden;/*Khi thg con vượt quá thg cha thì làm gì "Hidden" ẩn nó đi thì sẽ thấy bo viền dưới khung ĐK*/
     border-radius: 5px;/*Bo ở trên thôi phía dưới nhọn (vuông góc, socials nó là thg con lòi ra bên ngoài "default html vẫn hiển thị thg con lòi ra khỏi thg cha của nó")*/
 }
-.auth-form__group{   
-}
+
 .auth-form__container{
     padding: 0 32px;
 }
@@ -477,9 +474,7 @@
     animation: fadeIn ease-in 0.2s;
     cursor: default;
 } 
-.header__cart-list--no-cart{
-    
-}
+
 .header__cart-icon{
     font-size: 2.4rem;/*Tăng kích thước Cart*/
     color: var(--while-color);/*Cho Cart thành màu trắng*/
@@ -533,9 +528,7 @@
     background-color: #e6ab9f;
     cursor: pointer;/*Chuột hình bàn tay khi nằm trong vùng của Button*/
 }
-.header__search-btn-icon{
 
-}
 .header__search-select:hover .header__search-option{/*Khi hover vào "header__search-select" thì mới hiện "header__search-option"*/
     display: block;/*Nhưng đi dy chuột xuống thì bị mất "Cần tạo cầu nối"*/
 }
@@ -825,9 +818,7 @@
     left: 20px;
     right: 20px;
 }
-.category-item--active{
 
-}
 .category-item__link{
     position: relative;/*Cho nó cố định bên phải để khi hover vào nó vừa đổi màu vừa chạy qua bên phải*/
     right: 0;/*Chạy từ 0 đến -4 của "category-item__link"*/
@@ -921,9 +912,7 @@
 .home-filter__page-btn--disabled .home-filter__page-icon{
     color: #ccc;
 }
-.home-product-item__sale-off-persent{
-    
-}
+
 .home-product{
     margin-bottom: 10px;/*Các product cách bottom web 10px*/
 }
@@ -996,18 +985,7 @@
     font-weight: 300;   
     margin: 3px 10px 0;/* 10px left right Who vs Nhật Bản thẳng hàng vs 88 đã bán vả icon heart*/
 }
-.home-product-item__origin__brand{
-    
-}
-.home-product-item__origin-name{
 
-}
-.home-product-item__sale-off{
-
-}
-.home-product-item__sale-off-persent{
-
-}
 .home-product-item__sale-off-lable{
     color: var(--while-color);
     font-size: 1.3rem;
@@ -1062,9 +1040,7 @@
 .home-product-item__like--liked .home-product-item__like-icon-empty{
     display: none;
 }
-.home-product-item__like-icon-empty{
 
-}
 .home-product{
     margin-bottom: 10px;
 }
@@ -1123,9 +1099,7 @@
     padding-left: 0;
     list-style: none;/*Dấu chấm <li>*/
 }
-.footer-item{
-    
-}
+
 .footer-item__link{
     text-decoration: none;/*Gạch chân <a>*/
     font-size: 1.2rem;

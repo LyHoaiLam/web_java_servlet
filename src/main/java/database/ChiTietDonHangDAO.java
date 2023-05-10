@@ -1,7 +1,6 @@
 package database;
 
 import java.sql.Connection;
-// import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,11 +10,14 @@ import model.ChiTietDonHang;
 import model.DonHang;
 import model.SanPham;
 public class ChiTietDonHangDAO implements DAOInterface<ChiTietDonHang>{
+
+
     @Override
-	public ArrayList<ChiTietDonHang> selectAll() {
+	public ArrayList<ChiTietDonHang> selectAll(){
+
 		ArrayList<ChiTietDonHang> ketQua = new ArrayList<ChiTietDonHang>();
 
-		try {
+		try{
 			// Bước 1: tạo kết nối đến CSDL
 			Connection con = JDBCUtil.getConnection();
 
@@ -28,8 +30,7 @@ public class ChiTietDonHangDAO implements DAOInterface<ChiTietDonHang>{
 			ResultSet rs = st.executeQuery();
 
 			// Bước 4:
-
-			while (rs.next()) {
+			while(rs.next()){
 				String maChiTietDonHang = rs.getString("machitietdonhang");
 				String donhang = rs.getString("donhang");
 				String sanpham = rs.getString("sanpham");
@@ -40,7 +41,6 @@ public class ChiTietDonHangDAO implements DAOInterface<ChiTietDonHang>{
 				double thuevat = rs.getDouble("thuevat");
 				double tongtien = rs.getDouble("tongtien");
 
-				
 				// DonHang dh = new DonHangDAO().selectById(new DonHang(donhang, null, "", "", "", "", 0, 0, null, null));
 				DonHang dh = new DonHangDAO().selectById(new DonHang(donhang, null, sql, donhang, maChiTietDonHang, donhang, sanpham, thuevat, tongtien, null, null));// Thêm vào
 				SanPham sp = new SanPhamDAO().selectById(new SanPham("", "", null, 0, 0, 0, 0, 0, null, "", ""));
@@ -52,18 +52,19 @@ public class ChiTietDonHangDAO implements DAOInterface<ChiTietDonHang>{
 
 			// Bước 5:
 			JDBCUtil.closeConnection(con);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		}catch(SQLException e){
 			e.printStackTrace();
 		}
 
 		return ketQua;
 	}
 
+
+
 	@Override
-	public ChiTietDonHang selectById(ChiTietDonHang t) {
+	public ChiTietDonHang selectById(ChiTietDonHang t){
 		ChiTietDonHang ketQua = null;
-		try {
+		try{
 			Connection con = JDBCUtil.getConnection();
 
 			String sql = "SELECT * FROM chitietdonhang WHERE machitietdonhang=?";
@@ -74,7 +75,7 @@ public class ChiTietDonHangDAO implements DAOInterface<ChiTietDonHang>{
 			System.out.println(sql);
 			ResultSet rs = st.executeQuery();
 
-			while (rs.next()) {
+			while(rs.next()){
 				String maChiTietDonHang = rs.getString("machitietdonhang");
 				String donhang = rs.getString("donhang");// o
 				String sanpham = rs.getString("sanpham");// o
@@ -95,18 +96,18 @@ public class ChiTietDonHangDAO implements DAOInterface<ChiTietDonHang>{
 			}
 			// Bước 5:
 			JDBCUtil.closeConnection(con);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		}catch(SQLException e){
 			e.printStackTrace();
 		}
-
 		return ketQua;
 	}
 
+
+
 	@Override
-	public int insert(ChiTietDonHang t) {
+	public int insert(ChiTietDonHang t){
 		int ketQua = 0;
-		try {
+		try{
 			// Bước 1: tạo kết nối đến CSDL
 			Connection con = JDBCUtil.getConnection();
 
@@ -130,30 +131,31 @@ public class ChiTietDonHangDAO implements DAOInterface<ChiTietDonHang>{
 			// Bước 4:
 			System.out.println("Bạn đã thực thi: " + sql);
 			System.out.println("Có " + ketQua + " dòng bị thay đổi!");
-
 			// Bước 5:
 			JDBCUtil.closeConnection(con);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		}catch(SQLException e){
 			e.printStackTrace();
 		}
-
 		return ketQua;
 	}
 
+
+
 	@Override
-	public int insertAll(ArrayList<ChiTietDonHang> arr) {
+	public int insertAll(ArrayList<ChiTietDonHang> arr){
 		int dem = 0;
-		for (ChiTietDonHang ChiTietDonHang : arr) {
+		for(ChiTietDonHang ChiTietDonHang : arr){
 			dem += this.insert(ChiTietDonHang);
 		}
 		return dem;
 	}
 
+
+
 	@Override
-	public int delete(ChiTietDonHang t) {
+	public int delete(ChiTietDonHang t){
 		int ketQua = 0;
-		try {
+		try{
 			// Bước 1: tạo kết nối đến CSDL
 			Connection con = JDBCUtil.getConnection();
 
@@ -173,27 +175,30 @@ public class ChiTietDonHangDAO implements DAOInterface<ChiTietDonHang>{
 
 			// Bước 5:
 			JDBCUtil.closeConnection(con);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		}catch(SQLException e){
 			e.printStackTrace();
 		}
 
 		return ketQua;
 	}
 
+
+
 	@Override
-	public int deleteAll(ArrayList<ChiTietDonHang> arr) {
+	public int deleteAll(ArrayList<ChiTietDonHang> arr){
 		int dem = 0;
-		for (ChiTietDonHang ChiTietDonHang : arr) {
+		for(ChiTietDonHang ChiTietDonHang : arr){
 			dem += this.delete(ChiTietDonHang);
 		}
 		return dem;
 	}
 
+
+
 	@Override
-	public int update(ChiTietDonHang t) {
+	public int update(ChiTietDonHang t){
 		int ketQua = 0;
-		try {
+		try{
 			// Bước 1: tạo kết nối đến CSDL
 			Connection con = JDBCUtil.getConnection();
 
@@ -213,13 +218,11 @@ public class ChiTietDonHangDAO implements DAOInterface<ChiTietDonHang>{
 			st.setString(9, t.getMaChiTietDonHang());
 
 			// Bước 3: thực thi câu lệnh SQL
-
 			System.out.println(sql);
 			ketQua = st.executeUpdate();
 
 			JDBCUtil.closeConnection(con);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		}catch(SQLException e){
 			e.printStackTrace();
 		}
 

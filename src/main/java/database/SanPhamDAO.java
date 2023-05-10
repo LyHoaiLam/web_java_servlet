@@ -1,7 +1,6 @@
 package database;
 
 import java.sql.Connection;
-// import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +10,7 @@ import model.SanPham;
 import model.TacGia;
 import model.TheLoai;
 public class SanPhamDAO implements DAOInterface<SanPham>{
+
     @Override
 	public ArrayList<SanPham> selectAll() {
 		ArrayList<SanPham> ketQua = new ArrayList<SanPham>();
@@ -25,7 +25,6 @@ public class SanPhamDAO implements DAOInterface<SanPham>{
 			// Bước 3: thực thi câu lệnh SQL
 			System.out.println(sql);
 			ResultSet rs = st.executeQuery();
-
 			// Bước 4:
 			while (rs.next()) {
 				String masanpham = rs.getString("masanpham");
@@ -40,7 +39,6 @@ public class SanPhamDAO implements DAOInterface<SanPham>{
 				String ngonngu = rs.getString("ngonngu");
 				String mota = rs.getString("mota");
 
-
 				//Dựa trên mã để tạo ra TacGia, TheLoai, SanPham
 				TacGia tacGia = (new TacGiaDAO().selectById(new TacGia(matacgia, "", null, "")));// Cho matacgia Để lấy ra ông TacGia đó
 				TheLoai theLoai = (new TheLoaiDAO().selectById(new TheLoai(matheloai, "")));
@@ -54,10 +52,8 @@ public class SanPhamDAO implements DAOInterface<SanPham>{
 			// Bước 5:
 			JDBCUtil.closeConnection(con);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return ketQua;
 	}
 
@@ -65,7 +61,6 @@ public class SanPhamDAO implements DAOInterface<SanPham>{
 
 	@Override
 	public SanPham selectById(SanPham t) {
-
 		SanPham ketQua = null;
 		try {
 			Connection con = JDBCUtil.getConnection();
@@ -95,10 +90,8 @@ public class SanPhamDAO implements DAOInterface<SanPham>{
 						theLoai, ngonngu, mota);
 				break;
 			}
-
 			JDBCUtil.closeConnection(con);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return ketQua;
@@ -141,10 +134,8 @@ public class SanPhamDAO implements DAOInterface<SanPham>{
 			// Bước 5:
 			JDBCUtil.closeConnection(con);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return ketQua;
 	}
 
@@ -185,7 +176,6 @@ public class SanPhamDAO implements DAOInterface<SanPham>{
 			// Bước 5:
 			JDBCUtil.closeConnection(con);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return ketQua;
@@ -239,7 +229,6 @@ public class SanPhamDAO implements DAOInterface<SanPham>{
 			// Bước 5:
 			JDBCUtil.closeConnection(con);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return ketQua;

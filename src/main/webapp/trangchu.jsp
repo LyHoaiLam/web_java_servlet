@@ -79,7 +79,7 @@
 										<a class="dropdown-item" href="#">Thông báo</a>
 									</li>
 									<li>
-										<a class="dropdown-item" href="#">Thay đổi thông tin</a>
+										<a class="dropdown-item" href="thaydoithongtin.jsp">Thay đổi thông tin</a>
 									</li>
 									<li>
 										<a class="dropdown-item" href="doimatkhau.jsp">Thay đổi mật khẩu</a>
