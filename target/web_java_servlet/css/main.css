@@ -302,7 +302,7 @@
 }
 .header__notify-footer-btn:hover{
     background-color: var(--primary-color);/*Hover đổi màu xem tất cả*/
-    border-radius: 50%
+    border-radius: 2%
 }
 .btn:hover{
     background-color: black;

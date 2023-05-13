@@ -55,7 +55,7 @@
 				
 				String ngaySinh= khachHang.getNgaySinh().toString();
 				
-				String diaChiKhachHang= khachHang.getDiaChi();
+				String diaChi= khachHang.getDiaChi();
 				
 				String diaChiMuaHang= khachHang.getDiaChiMuaHang();
 				
@@ -103,9 +103,9 @@
 					<div class="col-sm-6">
 						<h3>Địa chỉ</h3>
 						<div class="mb-3">
-							<label for="diaChiKhachHang" class="form-label">Địa chỉ
+							<label for="diaChi" class="form-label">Địa chỉ
 								khách hàng</label> <input type="text" class="form-control"
-								id="diaChiKhachHang" name="diaChiKhachHang" value="<%=diaChiKhachHang%>">
+								id="diaChi" name="diaChi" value="<%=diaChi%>">
 						</div>
 						<div class="mb-3">
 							<label for="diaChiMuaHang" class="form-label">Địa chỉ mua
